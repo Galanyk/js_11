@@ -10,32 +10,34 @@
 </head>
 
 <body>
-    <section>
-        <div class="container">
-            <div class="container-input">
-                <input type="text" class="input" id="input">
-                <div>C</div>
-            </div>
-            <div class="container-box">
-                <div class="box">1</div>
-                <div class="box">2</div>
-                <div class="box">3</div>
-                <div class="box">4</div>
-                <div class="box">5</div>
-                <div class="box">6</div>
-                <div class="box">7</div>
-                <div class="box">8</div>
-                <div class="box">9</div>
-                <div class="box box-zero">0</div>
-                <div class="container-box">
-                    <div class="box">+</div>
-                    <div class="box">-</div>
-                    <div class="box">*</div>
-                    <div class="box">/</div>
+    <div class="container">
+        <div class="calculator">
+            <input type="text" class="calc-numbers" id="input" value="">
+            <div class="calculator-buttons">
+                <div class="btn operator-clear" id="operator-clear">C</div>
+                <div class="numbers" id="numbers">
+                    <div class="btn" id="7">7</div>
+                    <div class="btn" id="8">8</div>
+                    <div class="btn" id="9">9</div>
+                    <div class="btn" id="4">4</div>
+                    <div class="btn" id="5">5</div>
+                    <div class="btn" id="6">6</div>
+                    <div class="btn" id="1">1</div>
+                    <div class="btn" id="2">2</div>
+                    <div class="btn" id="3">3</div>
+                    <div class="btn span" id="0">0</div>
                 </div>
+                <div class="operators" id="operators">
+                    <div class="btn operator" id="/">/</div>
+                    <div class="btn operator" id="*">*</div>
+                    <div class="btn operator" id="-">-</div>
+                    <div class="btn operator" id="+">+</div>
+
+                </div>
+                <div class="btn operator" id="operator-equals">=</div>
             </div>
         </div>
-    </section>
+    </div>
     <script src="app.js"></script>
 </body>
 
