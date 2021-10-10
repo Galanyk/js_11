@@ -10,47 +10,56 @@ keyBoardEl.addEventListener('click', renderElements)
 operations.addEventListener('click', renderElements);
 
 clearData.addEventListener('click', clear)
-operatorEquals.addEventListener('click', showResult)
+operatorEquals.addEventListener('click', calculation)
 let leftOper = 0;
 let rightOper = 0;
-let operant;
+let separateOperation;
+let result = 0;
 
 function Calculator() {
-    let result;
-    this.summ = function() {
-        // result += +inputEl.value[i]
-        // console.log(result += inputEl.value[i])
-    };
-    this.subtract = function() {
 
+    this.summ = function(lvalue, rvalue) {
+        return lvalue + rvalue;
     };
 
-    this.multiply = function() {
-
+    this.subtract = function(lvalue, rvalue) {
+        return lvalue - rvalue;
     };
 
-    this.devide = function() {
-
+    this.multiply = function(lvalue, rvalue) {
+        return lvalue * rvalue;
     };
+
+    this.devide = function(lvalue, rvalue) {
+        if (rvalue > 0) {
+            return lvalue / rvalue;
+        } else {
+            alert("Wrong operation")
+            return NaN;
+        }
+    };
+
+    this.showResult = function(result) {
+        inputEl.value += "=" + result;
+    }
 }
 
 function renderElements(e) {
-    leftOper = e.target
-    if (+e.target.id) {
+    if (e.target.id >= '0' && e.target.id <= '9') {
         for (i = 0; i < numbers.length; ++i) {
             if (+e.target.id === i) {
                 inputEl.value += numbers[i];
             }
         }
-    } else if (+inputEl.value[inputEl.value.length - 1]) {
-        leftOper = +inputEl.value;
-        console.log(leftOper, typeof(leftOper));
+    } else if (inputEl.value.length > 0 &&
+        +inputEl.value[inputEl.value.length - 1] ||
+        inputEl.value[inputEl.value.length - 1] === '0') {
+        separateOperation = e.target.id;
         for (i = 0; i < operators.length; ++i) {
             if (e.target.id === operators[i]) {
                 inputEl.value += operators[i];
             }
         }
-        console.log(inputEl.value);
     }
 }
 
@@ -58,7 +67,27 @@ function clear() {
     inputEl.value = '';
 }
 
-function showResult() {
+function calculation() {
+    if (!inputEl.value.includes("=")) {
+        console.log(inputEl.value.includes("="))
+        const tempArray = inputEl.value.split(separateOperation);
+        if (tempArray.length > 1 &&
+            tempArray[tempArray.length - 1] !== "") {
+            leftOper = +tempArray[0];
+            rightOper = +tempArray[1];
 
+            if (separateOperation === "+") {
+                result = calc1.summ(leftOper, rightOper)
+            } else if (separateOperation === "-") {
+                result = calc1.subtract(leftOper, rightOper)
+            } else if (separateOperation === "*") {
+                result = calc1.multiply(leftOper, rightOper)
+            } else if (separateOperation === "/") {
+                result = calc1.devide(leftOper, rightOper)
+            }
+            calc1.showResult(result);
+        }
+    }
 }
+
 const calc1 = new Calculator();
