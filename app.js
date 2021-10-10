@@ -45,18 +45,20 @@ function Calculator() {
 }
 
 function renderElements(e) {
-    if (e.target.id >= '0' && e.target.id <= '9') {
+    // console.log(e.target.id[e.target.id.length - 1])
+    if (e.target.id[e.target.id.length - 1] >= '0' &&
+        e.target.id[e.target.id.length - 1] <= '9') {
         for (i = 0; i < numbers.length; ++i) {
-            if (+e.target.id === i) {
+            if (+e.target.id[e.target.id.length - 1] === i) {
                 inputEl.value += numbers[i];
             }
         }
     } else if (inputEl.value.length > 0 &&
         +inputEl.value[inputEl.value.length - 1] ||
         inputEl.value[inputEl.value.length - 1] === '0') {
-        separateOperation = e.target.id;
+        separateOperation = e.target.id[e.target.id.length - 1];
         for (i = 0; i < operators.length; ++i) {
-            if (e.target.id === operators[i]) {
+            if (e.target.id[e.target.id.length - 1] === operators[i]) {
                 inputEl.value += operators[i];
             }
         }
