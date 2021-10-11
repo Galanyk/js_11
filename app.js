@@ -15,6 +15,7 @@ let leftOper = 0;
 let rightOper = 0;
 let separateOperation;
 let result = 0;
+let isTab = true;
 
 function Calculator() {
 
@@ -46,38 +47,42 @@ function Calculator() {
 
 function renderElements(e) {
     // console.log(e.target.id[e.target.id.length - 1])
-    if (e.target.id[e.target.id.length - 1] >= '0' &&
-        e.target.id[e.target.id.length - 1] <= '9') {
-        for (i = 0; i < numbers.length; ++i) {
-            if (+e.target.id[e.target.id.length - 1] === i) {
-                inputEl.value += numbers[i];
+    if (isTab) {
+        if (e.target.id[e.target.id.length - 1] >= '0' &&
+            e.target.id[e.target.id.length - 1] <= '9') {
+            for (i = 0; i < numbers.length; ++i) {
+                if (+e.target.id[e.target.id.length - 1] === i) {
+                    inputEl.value += numbers[i];
+                }
             }
-        }
-    } else if (inputEl.value.length > 0 &&
-        +inputEl.value[inputEl.value.length - 1] ||
-        inputEl.value[inputEl.value.length - 1] === '0') {
-        separateOperation = e.target.id[e.target.id.length - 1];
-        for (i = 0; i < operators.length; ++i) {
-            if (e.target.id[e.target.id.length - 1] === operators[i]) {
-                inputEl.value += operators[i];
+        } else if (inputEl.value.length > 0 &&
+            +inputEl.value[inputEl.value.length - 1] ||
+            inputEl.value[inputEl.value.length - 1] === '0') {
+            separateOperation = e.target.id[e.target.id.length - 1];
+            for (i = 0; i < operators.length; ++i) {
+                if (e.target.id[e.target.id.length - 1] === operators[i]) {
+                    inputEl.value += operators[i];
+                }
             }
         }
     }
 }
 
+
 function clear() {
     inputEl.value = '';
+    isTab = true;
 }
 
 function calculation() {
     if (!inputEl.value.includes("=")) {
-        console.log(inputEl.value.includes("="))
+        // console.log(inputEl.value.includes("="))
         const tempArray = inputEl.value.split(separateOperation);
         if (tempArray.length > 1 &&
             tempArray[tempArray.length - 1] !== "") {
             leftOper = +tempArray[0];
             rightOper = +tempArray[1];
-
+            isTab = false;
             if (separateOperation === "+") {
                 result = calc1.summ(leftOper, rightOper)
             } else if (separateOperation === "-") {
