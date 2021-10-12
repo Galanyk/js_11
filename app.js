@@ -1,16 +1,16 @@
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const operators = ['+', '-', '*', '/'];
 const keyBoardEl = document.querySelector('#numbers');
-const operations = document.querySelector('#operators');
+const operationsEl = document.querySelector('#operators');
 const inputEl = document.querySelector('#input');
-const clearData = document.querySelector('#operator-clear');
-const operatorEquals = document.querySelector('#operator-equals')
+const clearDataEl = document.querySelector('#operator-clear');
+const operatorEqualsEl = document.querySelector('#operator-equals')
 
 keyBoardEl.addEventListener('click', renderElements)
-operations.addEventListener('click', renderElements);
+operationsEl.addEventListener('click', renderElements);
 
-clearData.addEventListener('click', clear)
-operatorEquals.addEventListener('click', calculation)
+clearDataEl.addEventListener('click', clear)
+operatorEqualsEl.addEventListener('click', calculation)
 let leftOper = 0;
 let rightOper = 0;
 let separateOperation;
